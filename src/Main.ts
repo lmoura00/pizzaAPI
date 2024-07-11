@@ -1,9 +1,11 @@
 import express, {Request, Response} from 'express'
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
 
 const app = express()
 const prisma = new PrismaClient()
 app.use(express.json())
+app.use(cors())
 
 app.get("/pizza", async (request: Request, response: Response)=>{
     const pizzas = await prisma.pizza.findMany()
